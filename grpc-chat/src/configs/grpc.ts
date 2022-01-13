@@ -2,12 +2,9 @@ import path from 'path';
 import * as grpc from '@grpc/grpc-js';
 import * as protoLoader from '@grpc/proto-loader';
 
+import env from '../../../grpc-contracts/src/configs/env';
 import { ProtoGrpcType as ChatType } from '../../../grpc-contracts/src/chat-contract/chat-contract'
-import env from './env';
-import { ChatRequest } from '../../../grpc-contracts/src/chat-contract/chatPackage/ChatRequest';
-import { ChatResponse } from '../../../grpc-contracts/src/chat-contract/chatPackage/ChatResponse';
 import chatImplementation from '../services/chatImplementation';
-
 
 export class GRcpServer {
   private chatPackage;
