@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package accountPackage;
+
+message Account {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string password = 4;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+}
+
+service Account {
+  rpc createAccount (Account) returns (Account){};
+  rpc login (LoginRequest) returns(token){};
+}
