@@ -1,0 +1,15 @@
+{
+  "name": "grpc-contracts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "gen": "make",
+    "gen:account": "make account",
+    "gen:chat": "make chat"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.5.0",
+    "@grpc/proto-loader": "^0.6.9"
+  }
+}

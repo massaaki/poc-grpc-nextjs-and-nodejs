@@ -18,7 +18,7 @@ message LoginResponse {
   string token = 1;
 }
 
-service Account {
+service AccountService {
   rpc createAccount (Account) returns (Account){};
-  rpc login (LoginRequest) returns(token){};
+  rpc login (LoginRequest) returns(LoginResponse){};
 }
