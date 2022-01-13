@@ -28,7 +28,7 @@ export class GRcpServer {
   startServer() {
     const server = this.configGrcpServer();
 
-    server.bindAsync(`0.0.0.0:${env.grcp.port}`, grpc.ServerCredentials.createInsecure(), (error, port) => {
+    server.bindAsync(`0.0.0.0:${env.chat.port}`, grpc.ServerCredentials.createInsecure(), (error, port) => {
       if (error) {
         console.log("Error to start the service", error);
         return;
