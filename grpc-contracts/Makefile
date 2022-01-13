@@ -7,3 +7,6 @@ account:
 
 chat: 
 	yarn proto-loader-gen-types --grpcLib=@grpc/grpc-js --outDir=src/chat-contract/ src/chat-contract/*.proto
+
+hello:
+	yarn proto-loader-gen-types --grpcLib=@grpc/grpc-js --outDir=src/hello-contract/ src/hello-contract/*.proto

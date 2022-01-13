@@ -1,13 +1,10 @@
 {
-  "name": "grpc-contracts",
+  "name": "grpc-hello-world",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts": {
-    "gen": "make",
-    "gen:account": "make account",
-    "gen:chat": "make chat",
-    "gen:hello": "make hello"
+  "devDependencies": {
+    "typescript": "^4.5.4"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.5.0",
