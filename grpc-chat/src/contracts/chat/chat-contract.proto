@@ -38,13 +38,14 @@ message User {
 }
 
 message UserStreamResponse {
-  repeated User user = 1;
+  repeated User users = 1;
 }
 
 
 message StreamMessage {
-  int32 id = 1;
-  string message = 2;
+  int32 user_id = 1;
+  string user_avatar = 2;
+  string message = 3;
 }
 
 service ChatService {

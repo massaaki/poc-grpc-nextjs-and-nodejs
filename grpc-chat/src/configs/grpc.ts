@@ -6,6 +6,9 @@ import env from '../../../grpc-contracts/src/configs/env';
 import { ProtoGrpcType as ChatType } from '../contracts/chat/chat-contract'
 import chatImplementation from '../services/chatImplementation';
 
+import { setupPupSub } from './setupPupSub';
+
+
 export class GRcpServer {
   private chatPackage;
 
@@ -35,6 +38,7 @@ export class GRcpServer {
       }
       console.log(`Chat Service is running on port ${port}`);
       server.start();
+      setupPupSub();
     })
   }
 }

@@ -1,5 +1,5 @@
-import { Chat } from "../templates/Chat";
+import { ChatTemplate } from "../templates/ChatTemplate";
 
 export default function HomePage() {
-  return <Chat />
+  return <ChatTemplate />
 }

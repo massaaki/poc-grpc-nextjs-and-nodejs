@@ -2,11 +2,13 @@
 
 
 export interface StreamMessage {
-  'id'?: (number);
+  'userId'?: (number);
+  'userAvatar'?: (string);
   'message'?: (string);
 }
 
 export interface StreamMessage__Output {
-  'id'?: (number);
+  'userId'?: (number);
+  'userAvatar'?: (string);
   'message'?: (string);
 }

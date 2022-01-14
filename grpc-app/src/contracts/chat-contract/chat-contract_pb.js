@@ -1017,7 +1017,7 @@ proto.chatPackage.UserStreamResponse.prototype.toObject = function(opt_includeIn
  */
 proto.chatPackage.UserStreamResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userList: jspb.Message.toObjectList(msg.getUserList(),
+    usersList: jspb.Message.toObjectList(msg.getUsersList(),
     proto.chatPackage.User.toObject, includeInstance)
   };
 
@@ -1058,7 +1058,7 @@ proto.chatPackage.UserStreamResponse.deserializeBinaryFromReader = function(msg,
     case 1:
       var value = new proto.chatPackage.User;
       reader.readMessage(value,proto.chatPackage.User.deserializeBinaryFromReader);
-      msg.addUser(value);
+      msg.addUsers(value);
       break;
     default:
       reader.skipField();
@@ -1089,7 +1089,7 @@ proto.chatPackage.UserStreamResponse.prototype.serializeBinary = function() {
  */
 proto.chatPackage.UserStreamResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUserList();
+  f = message.getUsersList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -1101,10 +1101,10 @@ proto.chatPackage.UserStreamResponse.serializeBinaryToWriter = function(message,
 
 
 /**
- * repeated User user = 1;
+ * repeated User users = 1;
  * @return {!Array<!proto.chatPackage.User>}
  */
-proto.chatPackage.UserStreamResponse.prototype.getUserList = function() {
+proto.chatPackage.UserStreamResponse.prototype.getUsersList = function() {
   return /** @type{!Array<!proto.chatPackage.User>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.chatPackage.User, 1));
 };
@@ -1114,7 +1114,7 @@ proto.chatPackage.UserStreamResponse.prototype.getUserList = function() {
  * @param {!Array<!proto.chatPackage.User>} value
  * @return {!proto.chatPackage.UserStreamResponse} returns this
 */
-proto.chatPackage.UserStreamResponse.prototype.setUserList = function(value) {
+proto.chatPackage.UserStreamResponse.prototype.setUsersList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -1124,7 +1124,7 @@ proto.chatPackage.UserStreamResponse.prototype.setUserList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.chatPackage.User}
  */
-proto.chatPackage.UserStreamResponse.prototype.addUser = function(opt_value, opt_index) {
+proto.chatPackage.UserStreamResponse.prototype.addUsers = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.chatPackage.User, opt_index);
 };
 
@@ -1133,8 +1133,8 @@ proto.chatPackage.UserStreamResponse.prototype.addUser = function(opt_value, opt
  * Clears the list making it empty but non-null.
  * @return {!proto.chatPackage.UserStreamResponse} returns this
  */
-proto.chatPackage.UserStreamResponse.prototype.clearUserList = function() {
-  return this.setUserList([]);
+proto.chatPackage.UserStreamResponse.prototype.clearUsersList = function() {
+  return this.setUsersList([]);
 };
 
 
@@ -1170,8 +1170,9 @@ proto.chatPackage.StreamMessage.prototype.toObject = function(opt_includeInstanc
  */
 proto.chatPackage.StreamMessage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    message: jspb.Message.getFieldWithDefault(msg, 2, "")
+    userId: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    userAvatar: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    message: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1210,9 +1211,13 @@ proto.chatPackage.StreamMessage.deserializeBinaryFromReader = function(msg, read
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setId(value);
+      msg.setUserId(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUserAvatar(value);
+      break;
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setMessage(value);
       break;
@@ -1245,17 +1250,24 @@ proto.chatPackage.StreamMessage.prototype.serializeBinary = function() {
  */
 proto.chatPackage.StreamMessage.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getUserId();
   if (f !== 0) {
     writer.writeInt32(
       1,
       f
     );
   }
-  f = message.getMessage();
+  f = message.getUserAvatar();
   if (f.length > 0) {
     writer.writeString(
       2,
+      f
+    );
+  }
+  f = message.getMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -1263,10 +1275,10 @@ proto.chatPackage.StreamMessage.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional int32 id = 1;
+ * optional int32 user_id = 1;
  * @return {number}
  */
-proto.chatPackage.StreamMessage.prototype.getId = function() {
+proto.chatPackage.StreamMessage.prototype.getUserId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -1275,16 +1287,16 @@ proto.chatPackage.StreamMessage.prototype.getId = function() {
  * @param {number} value
  * @return {!proto.chatPackage.StreamMessage} returns this
  */
-proto.chatPackage.StreamMessage.prototype.setId = function(value) {
+proto.chatPackage.StreamMessage.prototype.setUserId = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional string message = 2;
+ * optional string user_avatar = 2;
  * @return {string}
  */
-proto.chatPackage.StreamMessage.prototype.getMessage = function() {
+proto.chatPackage.StreamMessage.prototype.getUserAvatar = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1293,8 +1305,26 @@ proto.chatPackage.StreamMessage.prototype.getMessage = function() {
  * @param {string} value
  * @return {!proto.chatPackage.StreamMessage} returns this
  */
-proto.chatPackage.StreamMessage.prototype.setMessage = function(value) {
+proto.chatPackage.StreamMessage.prototype.setUserAvatar = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string message = 3;
+ * @return {string}
+ */
+proto.chatPackage.StreamMessage.prototype.getMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.chatPackage.StreamMessage} returns this
+ */
+proto.chatPackage.StreamMessage.prototype.setMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

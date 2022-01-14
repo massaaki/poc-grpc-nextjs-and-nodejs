@@ -114,10 +114,10 @@ export namespace User {
 }
 
 export class UserStreamResponse extends jspb.Message {
-  getUserList(): Array<User>;
-  setUserList(value: Array<User>): UserStreamResponse;
-  clearUserList(): UserStreamResponse;
-  addUser(value?: User, index?: number): User;
+  getUsersList(): Array<User>;
+  setUsersList(value: Array<User>): UserStreamResponse;
+  clearUsersList(): UserStreamResponse;
+  addUsers(value?: User, index?: number): User;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UserStreamResponse.AsObject;
@@ -129,13 +129,16 @@ export class UserStreamResponse extends jspb.Message {
 
 export namespace UserStreamResponse {
   export type AsObject = {
-    userList: Array<User.AsObject>,
+    usersList: Array<User.AsObject>,
   }
 }
 
 export class StreamMessage extends jspb.Message {
-  getId(): number;
-  setId(value: number): StreamMessage;
+  getUserId(): number;
+  setUserId(value: number): StreamMessage;
+
+  getUserAvatar(): string;
+  setUserAvatar(value: string): StreamMessage;
 
   getMessage(): string;
   setMessage(value: string): StreamMessage;
@@ -150,7 +153,8 @@ export class StreamMessage extends jspb.Message {
 
 export namespace StreamMessage {
   export type AsObject = {
-    id: number,
+    userId: number,
+    userAvatar: string,
     message: string,
   }
 }
