@@ -3,24 +3,24 @@ import * as grpc from '@grpc/grpc-js';
 import * as protoLoader from '@grpc/proto-loader';
 
 import env from '../../../grpc-contracts/src/configs/env';
-import { ProtoGrpcType as ChatType } from '../../../grpc-contracts/src/chat-contract/chat-contract'
-import chatImplementation from '../services/chatImplementation';
+import { ProtoGrpcType as HelloType } from '../../../grpc-contracts/src/hello-contract/hello-contract'
+import helloImplementation from '../services/helloImplementation';
 
 export class GRcpServer {
-  private chatPackage;
+  private helloPackage;
 
   constructor() {
-    const contractPath = path.resolve(__dirname, '..', '..', '..', 'grpc-contracts', 'src', 'chat-contract', 'chat-contract.proto');
+    const contractPath = path.resolve(__dirname, "../../../grpc-contracts/src/hello-contract/hello-contract.proto");
 
     const packageDeffinition = protoLoader.loadSync(contractPath)
-    const obj = (grpc.loadPackageDefinition(packageDeffinition) as unknown) as ChatType;
-    this.chatPackage = obj.chatPackage;
+    const obj = (grpc.loadPackageDefinition(packageDeffinition) as unknown) as HelloType;
+    this.helloPackage = obj.helloContractPackage;
   }
 
   private configGrcpServer(): grpc.Server {
     const server = new grpc.Server();
 
-    server.addService(this.chatPackage.Chat.service, chatImplementation);
+    server.addService(this.helloPackage.HelloService.service, helloImplementation);
 
     return server;
   }
@@ -28,7 +28,7 @@ export class GRcpServer {
   startServer() {
     const server = this.configGrcpServer();
 
-    server.bindAsync(`0.0.0.0:${env.chat.port}`, grpc.ServerCredentials.createInsecure(), (error, port) => {
+    server.bindAsync(`0.0.0.0:${env.hello.port}`, grpc.ServerCredentials.createInsecure(), (error, port) => {
       if (error) {
         console.log("Error to start the service", error);
         return;
