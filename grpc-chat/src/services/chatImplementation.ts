@@ -1,24 +1,13 @@
-import { ChatHandlers } from '../../../grpc-contracts/src/chat-contract/chatPackage/Chat';
+import { ChatServiceHandlers } from '../contracts/chat/chatPackage/ChatService'
 
 export default {
-  Chat: (call) => {
-    call.on("data", (request) => {
-      const username = call.metadata.get('username')[0] as string;
-      const message = request.message;
-      console.log(username, message);
+  chatInitiate: (call, callback) => {
+    const sessionName = call.request.name || ''
+    const avatar = call.request.avatarUrl || ''
 
-    });
+    console.log('called chatInitiate');
+    if (!sessionName || !avatar) return callback(new Error("Name and avatar are required."));
 
-    call.on("end", () => {
-      const username = call.metadata.get('username')[0] as string;
-      call.write({
-        username: "Server",
-        message: `End message ${username}`
-      })
-
-      console.log(`${username} ended the chat session`);
-
-      call.end();
-    });
+    callback(null, { id: Math.floor(Math.random() * 1000) });
   }
-} as ChatHandlers
+} as ChatServiceHandlers
